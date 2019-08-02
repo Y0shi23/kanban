@@ -9,7 +9,10 @@ use App\Http\Controllers\Controller;
 class ArticlesController extends Controller {
     
     public function index() {
-        $listings = Listing::all();
+        $listings = Listing::where('user_id', Auth::user()->id)
+            ->orderBy('created_at', 'asc')
+            ->get();
+            
         return $listings;
     }
 }
