@@ -13,6 +13,6 @@ class ArticlesController extends Controller {
             ->orderBy('created_at', 'asc')
             ->get();
             
-        return $articles;
+        return $listings;
     }
 }
