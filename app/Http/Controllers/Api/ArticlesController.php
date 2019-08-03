@@ -11,6 +11,6 @@ class ArticlesController extends Controller {
     
     public function index() {
         $listings = Listing::all();
-        return $listings;
+        return response()->json($listings);
     }
 }
