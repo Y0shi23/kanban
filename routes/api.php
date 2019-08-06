@@ -18,5 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => ['api']], function(){
-  Route::resource('articles', 'Api\ArticlesController', ['except' => ['create', 'edit']]);
+  // 認証が必要ないメソッド
+  Route::post('/login', 'ApiController@login');
+  Route::post('/register', 'ApiController@register');
+
+  Route::group(['middleware' => ['jwt.auth']], function () {
+      // 認証が必要なメソッド
+      Route::get("/me", "ApiController@me");
+  });
 });
